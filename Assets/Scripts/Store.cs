@@ -48,9 +48,27 @@ public class Store
                 // Run a switch on the accountType to use the correct customer class for object creation
 
                 // This is just for testing
-                Customer thisCustomer = new Customer(int.Parse(thisRecord["id"]), thisRecord["accountType"], thisRecord["firstName"], thisRecord["lastName"], thisRecord["currentVideoRentals"]);
+
+                switch (thisRecord["accountType"]) 
+                {
+                    case "sf" :
+                        CustomerSf thisCustomerSf = new(int.Parse(thisRecord["id"]), thisRecord["accountType"], thisRecord["firstName"], thisRecord["lastName"], thisRecord["currentVideoRentals"]);
+                        Customer.customers.Add(int.Parse(thisRecord["id"]), thisCustomerSf);
+                        break;
+                    case "sx" :
+                        CustomerSx thisCustomerSx = new(int.Parse(thisRecord["id"]), thisRecord["accountType"], thisRecord["firstName"], thisRecord["lastName"], thisRecord["currentVideoRentals"]);
+                        Customer.customers.Add(int.Parse(thisRecord["id"]), thisCustomerSx);
+                        break;
+                    case "pf" :
+                        CustomerPf thisCustomerPf  = new(int.Parse(thisRecord["id"]), thisRecord["accountType"], thisRecord["firstName"], thisRecord["lastName"], thisRecord["currentVideoRentals"]);
+                        Customer.customers.Add(int.Parse(thisRecord["id"]), thisCustomerPf);
+                        break;
+                    default : 
+                        CustomerPx thisCustomerPx = new(int.Parse(thisRecord["id"]), thisRecord["accountType"], thisRecord["firstName"], thisRecord["lastName"], thisRecord["currentVideoRentals"]);
+                        Customer.customers.Add(int.Parse(thisRecord["id"]), thisCustomerPx);
+                        break;
+                }
     
-                Debug.LogFormat($"Dict {thisCustomer.PrintData()}");
             }
             // Videos
             else
