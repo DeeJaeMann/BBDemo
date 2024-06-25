@@ -1,0 +1,4 @@
+repository "BBDemo@FullSplashDev@cloud"
+  path "/"
+    br "/main"
+    co "/main"
